@@ -1,0 +1,515 @@
+body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(to bottom, #f9ae6d 50%, #FFFFFF 80%);
+        margin: 0;
+        padding: 0;
+        display: block;
+        flex-direction: column;
+        align-items: center;
+        color: #333;
+        height: 100%;
+    }
+
+    header {
+        text-align: center;
+        position: relative;
+        width: 100%;
+    }
+
+    header img {
+        width: 100%;
+        max-height: 400px;
+        object-fit: cover;
+        display: block;
+    }
+
+    header h1 {
+        font-family: "Tajawal", sans-serif;
+        font-weight: 700;
+        font-style: normal;
+        color: #1f2937;
+        font-size: 30px;
+        font-size: 1.9rem;
+        text-shadow: 1px 1px 3px rgba(31, 41, 55, 0.9);
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    header h3 {
+        font-family: "Tajawal", sans-serif;
+        font-weight: 500;
+        font-style: normal;
+        color: #1f2937;
+        font-size: 24px;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        position: absolute;
+        top: 55%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+
+
+/* Sidebar Styles */
+.sidebar {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translateX(-100%); /* Hide the sidebar off-screen */
+    background-color: rgba(143, 143, 143, 1);
+    color: white;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding-top: 60px;
+    z-index: 1000;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: white;
+    width:180px;
+    display: block;
+    transition: background-color 0.3s ease;
+}
+
+
+
+
+.sidebar .closebtn {
+    position: absolute;
+    top: 8px;
+    right: 5px;
+    font-size: 36px;
+    background: transparent;
+    padding: 8px 16px;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+/* Open Button Styles */
+.openbtn {
+    font-size: 20px;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: rgba(251, 146, 60, 1);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+}
+
+.openbtn.hidden {
+    opacity: 0; /* Hide the button when the sidebar is open */
+}
+
+.openbtn:hover {
+    background-color: rgba(251, 146, 60, 0.5);
+}
+
+/* Main Content Styles */
+.main-content {
+    padding: 20px;
+    transition: margin-left 0.3s ease;
+}
+
+.sidebar.open {
+    transform: translateX(0); /* Show the sidebar */
+}
+
+.openbtn.open {
+    margin-left: 250px; /* Adjust margin to account for sidebar width */
+}
+
+.openbtn:not(.hidden) {
+    display: block; /* Ensure button is shown when not hidden */
+}
+
+/* Header Styles */
+h1 {
+    color: #f9931F;
+    font-size: 30px;
+    text-align: center;
+    margin-bottom:30px;
+    margin-top:0px;
+
+}
+
+/* Form Styles */
+#svm-form,
+#knn-form {
+    background-color: rgb(226, 232, 240);
+    box-shadow: 0px 25px 50px -12px rgba(0, 0, 0, 0.25);
+    border-radius: 12px;
+    padding: 20px;
+    width: 900px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.form-row,
+.form-rowfour {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 20px;
+    align-items: flex-end;
+}
+
+.form-row > div,
+.form-rowfour > div {
+    flex: 1;
+    min-width: calc(30% - 15px);
+}
+
+.form-rowfour > div {
+    min-width: calc(20% - 15px);
+}
+
+.form-row label,
+.form-rowfour label {
+    color: #1F2937;
+    display: block;
+    font-weight: 600;
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+.form-row input,
+.form-rowfour input,
+.form-rowfour select,
+.form-row select {
+    width: 90%;
+    padding: 12px;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+/* Button Styles */
+button {
+    background-color: rgba(251, 146, 60, 0);
+    color: #1F2937;
+    padding: 16px 24px;
+    border-radius: 6px;
+    border: 2px solid rgba(251, 146, 60, 1);
+    font-weight: 700;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    font-size: 16px;
+}
+
+button:hover {
+    color: white;
+        background-color: rgba(251, 146, 60, 1);
+        transform: scale(1.08);
+}
+
+/* Result Box Styles */
+.result-row {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center; /* Center the content horizontally */
+    gap: 20px;
+    width: 900px;
+    margin-top: 20px;
+}
+
+.result-box {
+     background-color: rgb(226, 232, 240);
+    box-shadow: 0px 25px 50px -12px rgba(0, 0, 0, 0.25);
+    border-radius: 12px;
+    margin: 0 auto;
+    margin-bottom: 50px;
+    padding: 25px;
+    width: 100%;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+
+
+.low-risk {
+    border: 3px solid #d4edda; /* لون أخضر فاتح */
+    background-color: #eaf9e5; /* لون أخضر أكثر إشراقًا */
+    color: #2e6c2e; /* لون أخضر داكن */
+}
+
+.low2-risk {
+    border: 3px solid #f0b500; /* لون برتقالي دافئ */
+    background-color: #fdf4c8; /* لون برتقالي فاتح */
+    color: #d98d00; /* لون برتقالي داكن */
+}
+
+.high1-risk {
+    border: 3px solid #f77f00; /* لون برتقالي حيوي */
+    background-color: #fddfcb; /* لون برتقالي فاتح */
+    color: #d9534f; /* لون أحمر مائل للبرتقالي */
+}
+
+.high-risk {
+    border: 3px solid #f8d7da; /* لون وردي فاتح */
+    background-color: #fbe9e9; /* لون وردي أكثر إشراقًا */
+    color: #d9534f; /* لون أحمر داكن */
+}
+
+.maximum-risk {
+    border: 3px solid #6c757d; /* لون رمادي داكن */
+    background-color: #e9ecef; /* لون رمادي فاتح */
+    color: #343a40; /* لون رمادي داكن جدا */
+}
+
+/* Slider Styles */
+input[type="range"] {
+    -webkit-appearance: none;
+    width: 90%;
+    height: 1px;
+    background:  rgba(251, 146, 60, 1); /* اللون الأساسي */
+    border-radius: 5px;
+    outline: none;
+    padding:2px;
+    opacity: 0.7;
+    transition: opacity .2s;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #ffffff; /* اللون الزري للزر */
+    border: 2px solid rgb(249 147 31); /* لون الحدود */
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background .3s ease, border-color .3s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+    background: rgba(200 ,100 ,20 ,1);; /* لون خلفية الزر عند التمرير فوقه */
+    border-color: #fff; /* لون حدود الزر عند التمرير فوقه */
+    transform: scale(1.08);
+        transition: background-color 0.3s, transform 0.2s;
+
+
+
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: #ffffff; /* اللون الزري للزر */
+    border: 2px solid #007bff; /* لون الحدود */
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background .3s ease, border-color .3s ease;
+}
+
+input[type="range"]::-moz-range-thumb:hover {
+    background: #004090; /* لون خلفية الزر عند التمرير فوقه */
+    border-color: #004090; /* لون حدود الزر عند التمرير فوقه */
+}
+
+input[type="range"]::-ms-thumb {
+    width: 20px;
+    height: 10px;
+    background: #ffffff; /* اللون الزري للزر */
+    border: 2px solid #007bff; /* لون الحدود */
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background .3s ease, border-color .3s ease;
+}
+
+input[type="range"]::-ms-thumb:hover {
+    background: #004090; /* لون خلفية الزر عند التمرير فوقه */
+    border-color: #004090; /* لون حدود الزر عند التمرير فوقه */
+}
+
+input[type="range"]::-ms-track {
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+}
+
+
+/* Link Styles */
+a {
+    display: inline-block;
+    margin-top: 8px;
+    color: #ffffff;
+    padding: 15px 8px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 700;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+a:hover {
+    background-color: rgba(200,100,40,1);
+    transform: scale(1.05);
+}
+
+/* Form Submit Styles */
+.form-submit {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+
+
+
+/* description style */
+
+
+.FBox {
+        background-color: rgb(226, 232, 240);
+        box-shadow: 0px 25px 50px -12px rgba(0, 0, 0, 0.25);
+        border-radius: 10px;
+        color: #333;
+        padding: 20px;
+        text-align: center;
+        border-top: 1px solid #ddd;
+        margin: 0 auto 30px auto;
+        width: 55%;
+    }
+
+.FBox a{
+    color: #000;
+    border : 1px solid #000;
+}
+
+    .description_title {
+        font-family: "Tajawal", sans-serif;
+        font-weight: 700;
+        font-size: 1.8rem;
+        color: #F9931F;
+        margin-bottom: 15px;
+    }
+
+    .description {
+        font-family: "Tajawal", "Helvetica Neue", sans-serif;
+        font-size: 1rem;
+        color: #333;
+        margin: 0;
+        padding: 0;
+        text-align: left; /* لتوسيع النص في الوسط */
+        max-width: 800px; /* تحديد عرض أقصى للنص */
+        margin: 0 auto; /* موازنة النص في الوسط */
+    }
+
+    .description ul {
+        list-style-type: none; /* إزالة النقاط */
+        padding: 0;
+        margin: 0 0 0 20px;
+    }
+
+
+    .description li {
+        margin: 10px 0 10px 0;
+    }
+
+    .description li strong {
+        color: #1f2937;
+    }
+
+/* Footer Styles */
+footer {
+    position: absolute;
+    height: auto;
+    width: 100%;
+    background-color: rgb(249 147 31);
+    text-align: center;
+}
+
+.black-box{
+    display: inline-flex;
+    align-items: flex-start;
+    width: 100%;
+    background-color: rgb(15, 23, 42);
+    color: white;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+    text-align:right;
+    padding: 24px 0 24px 0;
+}
+.black-box h2{
+    color:rgb(249 147 31);
+}
+
+.black-box p{
+    color:rgb(255 255 255);
+    margin:2px;
+    padding:10px;
+    font-size: 1.1rem;
+    font-weight: 700;
+
+}
+.black-row{
+        text-align: right;
+            width: -webkit-fill-available;
+}
+.black-row a{
+    display:flex;
+    flex-direction: row-reverse;
+    color:rgb(255 255 255);
+
+}
+
+
+footer p {
+    font-family: "Tajawal", sans-serif;
+    color: #000;
+    margin-bottom: 10px;
+    margin: 5px 0 10px 0;
+}
+footer a {
+    height: 10px;
+    padding: 10px;
+    color: #000;
+    margin: 2px;
+}
+footer a:hover {
+    background-color: rgb(249 147 31);
+    height: 10px;
+    color: #fff;
+    margin: 2px;
+}
+
+
+
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .main-content {
+        width: 90%;
+        padding: 10px;
+    }
+
+    .result-row {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .result-box {
+        width: 100%;
+    }
+
+    .black-box{
+        align-items: center;
+        width : 100%;
+        background-color: black;
+        color: white;
+        flex-direction: row;
+    }
+}

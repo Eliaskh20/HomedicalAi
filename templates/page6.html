@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deepression Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='st.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+                <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+
+
+</head>
+<body>
+<header>
+        <img src="{{ url_for('static', filename='img/header-main.jpg') }}" alt="Header Image">
+        <h1>شركة هوميتكس الهندسية لتكنولوجيا المعلومات</h1>
+        <h3>معكم نحو تكنولوجيا أفضل</h3>
+</header>
+ <div class="container">
+     <div class="grid">
+      <div class="col-10_sm-12 graph">
+       <div class="cell cell-1"></div>
+       <div class="cell cell-2"></div>
+       <div class="cell cell-3"></div>
+       <div class="cell cell-4"></div>
+       <div class="cell cell-5"></div>
+       <div class="cell cell-6"></div>
+      </div>
+      <div class="col-2_sm-12">
+       <div class="number-1"><span>&#9829;</span></div>
+      </div>
+     </div>
+    </div>
+    <h1 class="project_name">Homedical Assistant</h1>
+    <div id="mySidebar" class="sidebar">
+        <button class="closebtn" onclick="closeNav()">&times;</button>
+
+        <a href="{{ url_for('index') }}">
+            <i class="fas fa-home"></i> Home
+        </a>
+
+        <a href="page1">
+            <i class="fas fa-vial"></i> Blood Glucose
+        </a>
+         <a href="page2">
+             <i class="fas fa-heartbeat"></i> Heart Disease
+         </a>
+
+         <a href="page3">
+             <i class="fas fa-brain"></i> Parkinson Disease
+         </a>
+        <a href="{{ url_for('page4') }}">
+            <i class="fas fa-pills"></i> Thyroid Disease
+        </a>
+        <a href="{{ url_for('page5') }}">
+           <i class="fas fa-virus"></i> Hepatitis Disease
+        </a>
+        <a href="{{ url_for('page6') }}">
+           <i class="fas fa-poll"></i> Depression Test
+        </a>
+
+
+    </div>
+
+
+<button class="openbtn" onclick="openNav()">☰</button>
+
+<div class="main-content">
+    <form id="knn-form" action="{{ url_for('page6') }}"  method="POST">
+            <h1>Depression Test Model</h1>
+        <div class="form-rowfour">
+            <div>
+                <label for="angry">Angry:</label>
+                <input type="range" id="angry" name="angry" min="1" max="10" value="5" oninput="this.nextElementSibling.value = this.value">
+                <output class="slider-value">5</output>
+            </div>
+            <div>
+                <label for="fear">Fear:</label>
+                <input type="range" id="fear" name="fear" min="1" max="10" value="5" oninput="this.nextElementSibling.value = this.value">
+                <output class="slider-value">5</output>
+            </div>
+        </div>
+        <div class="form-rowfour">
+            <div>
+                <label for="disgust">Disgust:</label>
+                <input type="range" id="disgust" name="disgust" min="1" max="10" value="5" oninput="this.nextElementSibling.value = this.value">
+                <output class="slider-value">5</output>
+            </div>
+            <div>
+                <label for="happy">Happy:</label>
+                <input type="range" id="happy" name="happy" min="1" max="10" value="5" oninput="this.nextElementSibling.value = this.value">
+                <output class="slider-value">5</output>
+            </div>
+        </div>
+        <div class="form-rowfour">
+            <div>
+                <label for="neutral">Neutral:</label>
+                <input type="range" id="neutral" name="neutral" min="1" max="10" value="5" oninput="this.nextElementSibling.value = this.value">
+                <output class="slider-value">5</output>
+            </div>
+            <div>
+                <label for="sad">Sad:</label>
+                <input type="range" id="sad" name="sad" min="1" max="10" value="5" oninput="this.nextElementSibling.value = this.value">
+                <output class="slider-value">5</output>
+            </div>
+        </div>
+        <div class="form-rowfour">
+            <div>
+                <label for="surprise">Surprise:</label>
+                <input type="range" id="surprise" name="surprise" min="1" max="10" value="5" oninput="this.nextElementSibling.value = this.value">
+                <output class="slider-value">5</output>
+            </div>
+        </div>
+        <div class="form-submit">
+            <button type="submit">Predict</button>
+        </div>
+    </form>
+</div>
+
+<div class="result-row">
+    <div id="knnResult" class="result-box">The Result</div>
+</div>
+<div class="FBox">
+    <h3>قيّم مشاعرك الحالية باستخدام المؤشرات التالية</h3>
+    <div class="description">
+        <ul>
+            <li><strong>Angry:</strong> استخدم المؤشر لتحديد مستوى شعورك بالغضب من 1 (أقل) إلى 10 (أقصى).</li>
+            <li><strong>Fear:</strong> استخدم المؤشر لتحديد مدى شعورك بالخوف من 1 (أقل) إلى 10 (أقصى).</li>
+            <li><strong>Disgust:</strong> استخدم المؤشر لتحديد مستوى شعورك بالاشمئزاز من 1 (أقل) إلى 10 (أقصى).</li>
+            <li><strong>Happy:</strong> استخدم المؤشر لتحديد مدى شعورك بالسعادة من 1 (أقل) إلى 10 (أقصى).</li>
+            <li><strong>Neutral:</strong> استخدم المؤشر لتحديد مدى شعورك بالحيادية من 1 (أقل) إلى 10 (أقصى).</li>
+            <li><strong>Sad:</strong> استخدم المؤشر لتحديد مدى شعورك بالحزن من 1 (أقل) إلى 10 (أقصى).</li>
+            <li><strong>Surprise:</strong> استخدم المؤشر لتحديد مستوى شعورك بالمفاجأة من 1 (أقل) إلى 10 (أقصى).</li>
+        </ul>
+    </div>
+</div>
+
+ <footer>
+        <div class="black-box">
+            <div class="black-row">
+                <img src="static/img/logo-light.png" alt="Header Image">
+                <p>وضعت الشركة عنوان التميز والعمل الدؤوب كضمان لتحقيق النجاح على المدى الطويل والذي يحقق الجودة والقيمة المضافة للزبائن والعاملين </p>
+            </div>
+            <div class="black-row">
+                <h2>خدماتنا</h2>
+                 <a href="#">أتمتة شركات القطاع العام والخاص</a>
+                 <a href="#">تطوير تطبيقات الموبايل</a>
+                 <a href="#">التسجيل الالكتروني لمختلف الفعاليات</a>
+                 <a href="#">التجارة الالكترونية </a>
+                 <a href="#"> إدارة الوثائق الالكترونية والأرشفة </a>
+            </div>
+            <div class="black-row">
+                <h2>اتصال </h2>
+                <p> حمص - باب دريب - بناء دار المهندسين </p>
+                <p> 00963933235754 </p>
+                <a href="mailto:info@hometecs.sy"> info@hometecs.sy </a>
+                <a href="#"> www.hometecs.sy </a>
+
+            </div>
+            <div class="black-row">
+                <h2> النشرة الإخبارية </h2>
+                <p> للاشتراك بخدمة البريد الالكتروني و متابعة جديدنا يمكنك إدخال عنوان بريدك الالكتروني </p>
+
+            </div>
+        </div>
+       <a href="https://www.facebook.com/Hometecs.sy" target="_blank" aria-label="Facebook" title="Facebook">
+            <i class="fab fa-facebook-f text-xl hover:text-slate-900"></i>
+        </a>
+
+        <a href="https://www.instagram.com/hometecs.sy3/" target="_blank" aria-label="Instagram" title="Instagram">
+            <i class="fab fa-instagram text-xl hover:text-slate-900"></i>
+        </a>
+
+
+      <p>حقوق النشر و التأليف محفوظة@ شركة هومتيكس لتكنولوجيا المعلومات© 2024</p>
+    </footer>
+ <script>
+        function openNav() {
+            document.getElementById("mySidebar").classList.add("open");
+            document.querySelector(".openbtn").classList.add("hidden");
+        }
+
+        function closeNav() {
+            document.getElementById("mySidebar").classList.remove("open");
+            document.querySelector(".openbtn").classList.remove("hidden");
+        }
+
+
+
+
+
+        document.getElementById('knn-form').onsubmit = async function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(event.target);
+            const formObject = Object.fromEntries(formData.entries());
+
+            const knnResultBox = document.getElementById('knnResult');
+
+            try {
+                const response = await fetch('{{ url_for("page6") }}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formObject),
+                });
+
+                const result = await response.json();
+                if (result.Deepression === 3) {
+                    knnResultBox.textContent = ' Very Low ';
+                    knnResultBox.className = 'result-box low-risk';
+                }if (result.Deepression === 1) {
+                    knnResultBox.textContent = 'Low';
+                    knnResultBox.className = 'result-box low2-risk';
+                }if (result.Deepression === 2) {
+                    knnResultBox.textContent = ' Mod ';
+                    knnResultBox.className = 'result-box high1-risk';
+                }if (result.Deepression === 0) {
+                    knnResultBox.textContent = ' High ';
+                    knnResultBox.className = 'result-box high-risk';
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                predictionResult.textContent = 'Error Occurred';
+                predictionResult.className = 'result-box high-risk';
+            }
+        };
+    </script>
+</body>
+</html>

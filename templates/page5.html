@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hepatitis Disease Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='st.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+                <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+   <header>
+        <img src="{{ url_for('static', filename='img/header-main.jpg') }}" alt="Header Image">
+        <h1>شركة هوميتكس الهندسية لتكنولوجيا المعلومات</h1>
+        <h3>معكم نحو تكنولوجيا أفضل</h3>
+    </header>
+    <div class="container">
+     <div class="grid">
+      <div class="col-10_sm-12 graph">
+       <div class="cell cell-1"></div>
+       <div class="cell cell-2"></div>
+       <div class="cell cell-3"></div>
+       <div class="cell cell-4"></div>
+       <div class="cell cell-5"></div>
+       <div class="cell cell-6"></div>
+      </div>
+      <div class="col-2_sm-12">
+       <div class="number-1"><span>&#9829;</span></div>
+      </div>
+     </div>
+    </div>
+    <h1 class="project_name">Homedical Assistant</h1>
+    <div id="mySidebar" class="sidebar">
+        <button class="closebtn" onclick="closeNav()">&times;</button>
+
+        <a href="{{ url_for('index') }}">
+            <i class="fas fa-home"></i> Home
+        </a>
+
+        <a href="page1">
+            <i class="fas fa-vial"></i> Blood Glucose
+        </a>
+         <a href="page2">
+             <i class="fas fa-heartbeat"></i> Heart Disease
+         </a>
+
+         <a href="page3">
+             <i class="fas fa-brain"></i> Parkinson Disease
+         </a>
+        <a href="{{ url_for('page4') }}">
+            <i class="fas fa-pills"></i> Thyroid Disease
+        </a>
+        <a href="{{ url_for('page5') }}">
+           <i class="fas fa-virus"></i> Hypertension Disease
+        </a>
+       <a href="{{ url_for('page6') }}">
+           <i class="fas fa-poll"></i> Depression Test
+        </a>
+
+
+    </div>
+
+
+    <button class="openbtn" onclick="openNav()">☰</button>
+    <div class="main-content">
+
+        <form id="knn-form" action="{{ url_for('page5') }}" method="post">
+                    <h1>Hypertension Disease Prediction</h1>
+
+           <div class="form-row">
+                <div>
+                    <label for="age">Age:</label>
+                    <input type="number" id="age" name="Age" required>
+                </div>
+                <div>
+                    <label for="sex">Sex:</label>
+                    <select id="sex" name="Sex" required>
+                        <option value="1">Male</option>
+                        <option value="0">Female</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="cp">Cp:</label>
+                    <input type="number" step="0.1" id="cp" name="cp" required>
+                </div>
+                <div>
+                    <label for="trestbps">Trestbps:</label>
+                    <input type="number" step="0.1" id="trestbps" name="Trestbps" required>
+                </div>
+                <div>
+                    <label for="chol">Chol:</label>
+                    <input type="number" step="0.1" id="chol" name="Chol" required>
+                </div>
+                <div>
+                    <label for="fbs">Fbs:</label>
+                    <input type="number" step="0.1" id="fbs" name="Fbs" required>
+                </div>
+                <div>
+                    <label for="restecg">Restecg:</label>
+                    <input type="number" step="0.1" id="restecg" name="Restecg" required>
+                </div>
+                <div>
+                    <label for="thalach">Thalach:</label>
+                    <input type="number" id="thalach" name="Thalach" required>
+                </div>
+                <div>
+                    <label for="exang">Exang:</label>
+                    <input type="number" id="exang" name="Exang" required>
+                </div>
+                <div>
+                    <label for="oldpeak">Oldpeak:</label>
+                    <input type="number" id="oldpeak" name="Oldpeak" required>
+                </div>
+                <div>
+                    <label for="slope">Slope:</label>
+                    <input type="number" id="slope" name="Slope" required>
+                </div>
+                <div>
+                    <label for="ca">Ca:</label>
+                    <input type="number" id="ca" name="Ca" required>
+                </div>
+                <div>
+                    <label for="thal">Thal:</label>
+                    <input type="number" id="thal" name="Thal" required>
+                </div>
+            </div>
+            <div class="form-submit">
+                <button type="submit">Make Prediction</button>
+            </div>
+        </form>
+    </div>
+    <div class="result-row">
+        <div id="predictionResult" class="result-box"> The Result </div>
+    </div>
+   <div class="FBox">
+    <h3>تم تصميم هذا المودل باستخدام قاعدة بيانات حقيقية وموثوقة</h3>
+    <div class="description">
+        <ul>
+            <li><strong>Age:</strong> أدخل عمرك بالسنوات.</li>
+            <li><strong>Sex:</strong> اختر جنسك. اختر "Male" إذا كنت ذكراً، أو "Female" إذا كنت أنثى.</li>
+            <li><strong>ALB:</strong> أدخل مستوى الألبومين (Albumin) في الدم بوحدة g/dL. الألبومين هو بروتين يُنتج في الكبد ويعكس حالة الكبد العامة.</li>
+            <li><strong>ALP:</strong> أدخل مستوى الفوسفاتاز القلوي (Alkaline Phosphatase) في الدم بوحدة U/L. يُستخدم هذا الإنزيم لتقييم صحة الكبد والمرارة.</li>
+            <li><strong>ALT:</strong> أدخل مستوى إنزيم الألانين ترانس أميناز (Alanine Aminotransferase) في الدم بوحدة U/L. ارتفاع هذا الإنزيم قد يشير إلى تلف الكبد.</li>
+            <li><strong>AST:</strong> أدخل مستوى إنزيم الأسبارتات ترانس أميناز (Aspartate Aminotransferase) في الدم بوحدة U/L. يُستخدم لتقييم صحة الكبد.</li>
+            <li><strong>BIL:</strong> أدخل مستوى البيليروبين (Bilirubin) في الدم بوحدة mg/dL. ارتفاع هذا المستوى قد يشير إلى مشكلات في الكبد أو القناة الصفراوية.</li>
+            <li><strong>CHE:</strong> أدخل مستوى الكولينستيراز (Cholinesterase) في الدم بوحدة U/L. انخفاض هذا الإنزيم قد يشير إلى اضطرابات في الكبد.</li>
+            <li><strong>CHOL:</strong> أدخل مستوى الكوليسترول (Cholesterol) في الدم بوحدة mg/dL. يُستخدم لتقييم صحة القلب والأوعية الدموية.</li>
+            <li><strong>CREA:</strong> أدخل مستوى الكرياتينين (Creatinine) في الدم بوحدة mg/dL. يُستخدم لتقييم وظيفة الكلى.</li>
+            <li><strong>GGT:</strong> أدخل مستوى إنزيم غاما غلوتاميل ترانسفيراز (Gamma-Glutamyl Transferase) في الدم بوحدة U/L. يُستخدم لتقييم صحة الكبد.</li>
+            <li><strong>PROT:</strong> أدخل مستوى البروتين الكلي (Total Protein) في الدم بوحدة g/dL. يعكس هذا المؤشر صحة الكبد والكلى.</li>
+        </ul>
+    </div>
+   <h3 style="direction: rtl" > <a href=" https://www.kaggle.com/datasets/prosperchuks/health-dataset?select=hypertension_data.csv" target="_blank">
+         <i class="fas fa-database text-xl hover:text-slate-900">
+             قاعدة البيانات المستخدمة
+         </i>
+    </a></h3>
+</div>
+
+     <footer>
+        <div class="black-box">
+            <div class="black-row">
+                <img src="static/img/logo-light.png" alt="Header Image">
+                <p>وضعت الشركة عنوان التميز والعمل الدؤوب كضمان لتحقيق النجاح على المدى الطويل والذي يحقق الجودة والقيمة المضافة للزبائن والعاملين </p>
+            </div>
+            <div class="black-row">
+                <h2>خدماتنا</h2>
+                 <a href="#">أتمتة شركات القطاع العام والخاص</a>
+                 <a href="#">تطوير تطبيقات الموبايل</a>
+                 <a href="#">التسجيل الالكتروني لمختلف الفعاليات</a>
+                 <a href="#">التجارة الالكترونية </a>
+                 <a href="#"> إدارة الوثائق الالكترونية والأرشفة </a>
+            </div>
+            <div class="black-row">
+                <h2>اتصال </h2>
+                <p> حمص - باب دريب - بناء دار المهندسين </p>
+                <p> 00963933235754 </p>
+                <a href="mailto:info@hometecs.sy"> info@hometecs.sy </a>
+                <a href="#"> www.hometecs.sy </a>
+
+            </div>
+            <div class="black-row">
+                <h2> النشرة الإخبارية </h2>
+                <p> للاشتراك بخدمة البريد الالكتروني و متابعة جديدنا يمكنك إدخال عنوان بريدك الالكتروني </p>
+
+            </div>
+        </div>
+        <a href="https://www.facebook.com/Hometecs.sy" target="_blank" aria-label="Facebook" title="Facebook">
+            <i class="fab fa-facebook-f text-xl hover:text-slate-900"></i>
+        </a>
+
+        <a href="https://www.instagram.com/hometecs.sy3/" target="_blank" aria-label="Instagram" title="Instagram">
+            <i class="fab fa-instagram text-xl hover:text-slate-900"></i>
+        </a>
+      <p>حقوق النشر و التأليف محفوظة@ شركة هومتيكس لتكنولوجيا المعلومات© 2024</p>
+    </footer>
+    <script>
+        function openNav() {
+            document.getElementById("mySidebar").classList.add("open");
+            document.querySelector(".openbtn").classList.add("hidden");
+        }
+
+        function closeNav() {
+            document.getElementById("mySidebar").classList.remove("open");
+            document.querySelector(".openbtn").classList.remove("hidden");
+        }
+
+
+
+
+
+
+        document.getElementById('knn-form').onsubmit = async function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(event.target);
+            const formObject = Object.fromEntries(formData.entries());
+
+            const knnResultBox = document.getElementById('predictionResult');
+
+            try {
+                const response = await fetch('{{ url_for("page5") }}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formObject),
+                });
+
+                const result = await response.json();
+                the_result = result.knn_prediction
+                if (result.knn_prediction === 0) {
+                    knnResultBox.textContent = 'Dont have Hypertension';
+                    knnResultBox.className = 'result-box low-risk';
+                }if (result.knn_prediction === 1) {
+                    knnResultBox.textContent = 'Have Hypertension';
+                    knnResultBox.className = 'result-box high-risk';
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                predictionResult.textContent = 'Error Occurred';
+                predictionResult.className = 'result-box high-risk';
+            }
+        };
+    </script>
+</body>
+</html>

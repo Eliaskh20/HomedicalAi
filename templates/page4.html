@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Thyroid Disease Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='st.css') }}">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <header>
+        <img src="{{ url_for('static', filename='img/header-main.jpg') }}" alt="Header Image">
+        <h1>شركة هوميتكس الهندسية لتكنولوجيا المعلومات</h1>
+        <h3>معكم نحو تكنولوجيا أفضل</h3>
+    </header>
+    <div class="container">
+     <div class="grid">
+      <div class="col-10_sm-12 graph">
+       <div class="cell cell-1"></div>
+       <div class="cell cell-2"></div>
+       <div class="cell cell-3"></div>
+       <div class="cell cell-4"></div>
+       <div class="cell cell-5"></div>
+       <div class="cell cell-6"></div>
+      </div>
+      <div class="col-2_sm-12">
+       <div class="number-1"><span>&#9829;</span></div>
+      </div>
+     </div>
+    </div>
+    <h1 class="project_name">Homedical Assistant</h1>
+    <div id="mySidebar" class="sidebar">
+        <button class="closebtn" onclick="closeNav()">&times;</button>
+
+        <a href="{{ url_for('index') }}">
+            <i class="fas fa-home"></i> Home
+        </a>
+
+        <a href="page1">
+            <i class="fas fa-vial"></i> Blood Glucose
+        </a>
+         <a href="page2">
+             <i class="fas fa-heartbeat"></i> Heart Disease
+         </a>
+
+         <a href="page3">
+             <i class="fas fa-brain"></i> Parkinson Disease
+         </a>
+        <a href="{{ url_for('page4') }}">
+            <i class="fas fa-pills"></i> Thyroid Disease
+        </a>
+        <a href="{{ url_for('page5') }}">
+           <i class="fas fa-virus"></i> Hepatitis Disease
+        </a>
+        <a href="{{ url_for('page6') }}">
+           <i class="fas fa-poll"></i> Depression Test
+        </a>
+
+
+    </div>
+
+<button class="openbtn" onclick="openNav()">☰</button>
+    <div class="main-content">
+        <form id="knn-form" action="{{ url_for('page4') }}" method="post">
+                    <h1>Thyroid Disease Prediction</h1>
+
+            <div class="form-row">
+                <div>
+                    <label for="age">Age:</label>
+                    <input type="number" id="age" name="age">
+                </div>
+                <div>
+                    <label for="sex">Sex:</label>
+                    <select id="sex" name="sex" required>
+                        <option value="1">Male</option>
+                        <option value="0">Female</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div>
+                    <label for="TT4">TT4:</label>
+                    <input type="number" id="TT4" name="TT4" step="0.01">
+                </div>
+                <div>
+                    <label for="T3">T3:</label>
+                    <input type="number" id="T3" name="T3" step="0.01">
+                </div>
+            </div>
+            <div class="form-row">
+                <div>
+                    <label for="T4U">T4U:</label>
+                    <input type="number" id="T4U" name="T4U" step="0.01">
+                </div>
+                <div>
+                    <label for="FTI">FTI:</label>
+                    <input type="number" id="FTI" name="FTI" step="0.01">
+                </div>
+            </div>
+            <div class="form-row">
+                <div>
+                    <label for="TSH">TSH:</label>
+                    <input type="number" id="TSH" name="TSH" step="0.01">
+                </div>
+                <div>
+                    <label for="pregnant">Pregnant:</label>
+                    <select id="pregnant" name="pregnant" required>
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-submit">
+                 <button type="submit">Make Prediction</button>
+            </div>
+        </form>
+    </div>
+    <div class="result-row">
+        <div id="resul" class="result-box"> The Result </div>
+    </div>
+    <div class="FBox">
+        <h3>مجموعة بيانات اكتشاف الغدة الدرقية، المستمدة من مكتبة UCI لتعلم الآلة ، تتضمن 9172 عينة. تهدف هذه المجموعة إلى تطوير وتقييم نماذج التعلم الآلي للكشف عن اضطرابات الغدة الدرقية.</h3>
+        <div class="description">
+            <ul>
+                <li><strong>Age:</strong> أدخل عمرك بالسنوات.</li>
+                <li><strong>Sex:</strong> اختر جنسك. اختر "Male" إذا كنت ذكراً، أو "Female" إذا كنت أنثى.</li>
+                <li><strong>TT4:</strong> أدخل مستوى الهرمون الثيروكسين الكلي (Total Thyroxine) في الدم بوحدة µg/dL.</li>
+                <li><strong>T3:</strong> أدخل مستوى هرمون ثلاثي يود الثيرونين (Triiodothyronine) في الدم بوحدة ng/dL.</li>000
+                <li><strong>T4U:</strong> أدخل نسبة استخدام الهرمون الثيروكسين (Thyroxine Uptake). هذا المؤشر يعكس كمية الثيروكسين الحر (Free Thyroxine) المتاحة في الدم.</li>
+                <li><strong>FTI:</strong> أدخل مؤشر الثيروكسين الحر (Free Thyroxine Index)، وهو مقياس يجمع بين قيم TT4 وT4U لتقييم وظيفة الغدة الدرقية.</li>
+                <li><strong>TSH:</strong> أدخل مستوى الهرمون المنبه للغدة الدرقية (Thyroid-Stimulating Hormone) في الدم بوحدة µIU/mL. هذا الهرمون يساعد في تنظيم نشاط الغدة الدرقية.</li>
+                <li><strong>Pregnant:</strong> اختر إذا كنت حاملاً (Yes) أو لا (No).</li>
+            </ul>
+        </div>
+        <h3 style="direction: rtl" > <a href="https://www.kaggle.com/datasets/emmanuelfwerr/thyroid-disease-data" target="_blank">
+             <i class="fas fa-database text-xl hover:text-slate-900">
+                 قاعدة البيانات المستخدمة
+             </i>
+        </a></h3>
+    </div>
+
+     <footer>
+        <div class="black-box">
+            <div class="black-row">
+                <img src="static/img/logo-light.png" alt="Header Image">
+                <p>وضعت الشركة عنوان التميز والعمل الدؤوب كضمان لتحقيق النجاح على المدى الطويل والذي يحقق الجودة والقيمة المضافة للزبائن والعاملين </p>
+            </div>
+            <div class="black-row">
+                <h2>خدماتنا</h2>
+                 <a href="#">أتمتة شركات القطاع العام والخاص</a>
+                 <a href="#">تطوير تطبيقات الموبايل</a>
+                 <a href="#">التسجيل الالكتروني لمختلف الفعاليات</a>
+                 <a href="#">التجارة الالكترونية </a>
+                 <a href="#"> إدارة الوثائق الالكترونية والأرشفة </a>
+            </div>
+            <div class="black-row">
+                <h2>اتصال </h2>
+                <p> حمص - باب دريب - بناء دار المهندسين </p>
+                <p> 00963933235754 </p>
+                <a href="mailto:info@hometecs.sy"> info@hometecs.sy </a>
+                <a href="#"> www.hometecs.sy </a>
+
+            </div>
+            <div class="black-row">
+                <h2> النشرة الإخبارية </h2>
+                <p> للاشتراك بخدمة البريد الالكتروني و متابعة جديدنا يمكنك إدخال عنوان بريدك الالكتروني </p>
+
+            </div>
+        </div>
+       <a href="https://www.facebook.com/Hometecs.sy" target="_blank" aria-label="Facebook" title="Facebook">
+            <i class="fab fa-facebook-f text-xl hover:text-slate-900"></i>
+        </a>
+
+        <a href="https://www.instagram.com/hometecs.sy3/" target="_blank" aria-label="Instagram" title="Instagram">
+            <i class="fab fa-instagram text-xl hover:text-slate-900"></i>
+        </a>
+      <p>حقوق النشر و التأليف محفوظة@ شركة هومتيكس لتكنولوجيا المعلومات© 2024</p>
+    </footer>
+    <script>
+        function openNav() {
+            document.getElementById("mySidebar").classList.add("open");
+            document.querySelector(".openbtn").classList.add("hidden");
+        }
+
+        function closeNav() {
+            document.getElementById("mySidebar").classList.remove("open");
+            document.querySelector(".openbtn").classList.remove("hidden");
+        }
+
+
+
+        document.getElementById('knn-form').onsubmit = async function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(event.target);
+            const formObject = Object.fromEntries(formData.entries());
+
+            const diagnosisBox = document.getElementById('resul');
+
+            try {
+                const response = await fetch('/page4', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formObject),
+                });
+
+                const result = await response.json();
+                diagnosisBox.textContent = result.diagnosis;
+
+                if (result.diagnosis.includes('normal condition and does not suffer from any thyroid problems')) {
+                    diagnosisBox.className = 'result-box low-risk';
+                } else {
+                    diagnosisBox.className = 'result-box high-risk';
+                }
+
+            } catch (error) {
+                console.error('Error:', error);
+                diagnosisBox.textContent = 'Error Occurred';
+                diagnosisBox.className = 'result-box high-risk';
+            }
+        };
+</script>
+
+</body>
+</html>
